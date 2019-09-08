@@ -15,5 +15,7 @@ public class Main {
 
         List<String> orig = Files.readAllLines(Paths.get(firstFilePath));
         List<String> toDiff = Files.readAllLines(Paths.get(secondFilePath));
+
+        System.out.println("/html/body/a");
     }
 }
