@@ -26,3 +26,6 @@
 3. how to implement this? First - read two files. Second - find element in first on, parsing is required. Third - find all btn elements in second file. Fourth - select most similar element from second file and output path.
 4. How to check similarity? Extract all attributes from original file. Order them in by some priority, score every element from second file and output the element with highest score?
 
+* Misc
+
+build and test with command "mvn clean compile assembly:single ; ./draft-test.sh"

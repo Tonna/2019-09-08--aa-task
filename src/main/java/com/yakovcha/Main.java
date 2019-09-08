@@ -3,6 +3,7 @@ package com.yakovcha;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -18,25 +19,29 @@ public class Main {
         if (args.length < 2) {
             throw new IllegalArgumentException("please provide two file pathes");
         }
-        String firstFilePath = args[0];
-        String secondFilePath = args[1];
+        String originalPath = args[0];
+        String diffPath = args[1];
 
         //optional
-        String origId;
+        String originalButtonId;
         if (args.length == 3) {
-            origId = args[2];
+            originalButtonId = args[2];
         } else {
-            origId = DEFAULT_ID;
+            originalButtonId = DEFAULT_ID;
         }
 
-        List<String> orig = Files.readAllLines(Paths.get(firstFilePath));
-        List<String> toDiff = Files.readAllLines(Paths.get(secondFilePath));
+        String originalHtml = String.join("", Files.readAllLines(Paths.get(originalPath)));
+        String diffHtml = String.join("", Files.readAllLines(Paths.get(diffPath)));
 
 
-        Document doc = Jsoup.parse(String.join("", orig));
-        Elements origBtn = doc.select("#" + origId);
-        Element next = origBtn.iterator().next();
+        //TODO don't mind if there are no elements found for now. Just select first.
+        Element originalBtn = Jsoup.parse(originalHtml).select("#" + originalButtonId).iterator().next();
 
+
+        Elements diffBtns = Jsoup.parse(diffHtml).select(".btn");
+
+        List<Integer> score = new ArrayList<>(diffBtns.size());
+        
         System.out.println("/html/body/a");
     }
 }
