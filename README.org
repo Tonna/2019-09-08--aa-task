@@ -1,0 +1,25 @@
+* Must have
+- The application must be smart enough to find the target element, at least for the provided cases. However, a good algorithm should be agnostic and flexible to handle cases beyond the provided samples. At the same time we don’t expect absolute reliability of the search algorithm; it must build some similarity level and may fail in some specific cases.
+- Tool execution should look like:
+ java -cp <your_bundled_app>.jar <input_origin_file_path> <input_other_sample_file_path>
+- Output should be a XML path to the element within the diff-case HTML file. It can be XPath or an absolute path in a form that you like (for example: html > body > div > div[1] > div > a). Output can be provided into a file or the standard output.
+
+* Nice to have
+
+- Provide the target element id for collecting the initial information through application parameters, so we can search any element with id (different from the provided in the original samples). We have a few other similar samples. These samples will be used in scoring, as well. Don’t be scared with this task, there is no crazy diff-case like “completely other HTML page”.
+- Output how decision making about the appropriate element is done (for example, components of the achieved similarity level and the values of their contribution to the result).
+
+* Expected Deliverables
+
+** TODO Send link to source code.
+** TODO Commit jar to repo.
+  Commit  Binary version of the algorithm that runs and produces output of comparison. No build should be required.
+** TODO Output comparison
+  Comparison output for sample pages.
+** TODO Fill Readme.
+
+
+* Trail of my thought
+
+1. What thing is similar in all cases? class="btn"? Should I collect all buttons in document first?
+
