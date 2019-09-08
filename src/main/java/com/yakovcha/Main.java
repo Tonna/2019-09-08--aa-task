@@ -72,25 +72,26 @@ public class Main {
                 }
             }
 
-
         }
-        int max = 0;
+
+        //Checking which element in diffHtml is most similar
+        int mostSimilar = 0;
         for (int i = 0; i < score.size(); i++) {
-            if (score.get(i) > max) {
-                max = i;
+            if (score.get(i) > mostSimilar) {
+                mostSimilar = i;
             }
         }
 
-        Element similar = diffBtns.get(max);
+        Element similar = diffBtns.get(mostSimilar);
 
-        String out = "";
-        out += similar.tag().getName() + getNameAndPosition(similar);
+        StringBuilder out = new StringBuilder();
+        out.append(similar.tag().getName()).append(getNameAndPosition(similar));
         Element parent = similar.parent();
+        //here we basically add things to the beginning of output string
         do {
-            out = parent.tag().getName() + (getNameAndPosition(parent)) + "/" + out;
+            out.insert(0, parent.tag().getName() + (getNameAndPosition(parent)) + "/");
             parent = parent.parent();
         } while (parent.hasParent());
-
 
         System.out.println(out);
     }

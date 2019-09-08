@@ -1,3 +1,18 @@
+task link - https://agileengine.bitbucket.io/beKIvpUlPMtzhfAy/
+
+* Trail of my thought
+
+1. What thing is similar in all cases? class="btn"? Should I collect all buttons in document first?
+2. So the way I understand the task is to grab all data about html element (button to be exact) with specific id. Then I extract all useful information from that element. After that I go through another html file and try to find element which is the *most similar* to original one? Ok, lets stop here and implement things.
+3. how to implement this? First - read two files. Second - find element in first on, parsing is required. Third - find all btn elements in second file. Fourth - select most similar element from second file and output path.
+4. How to check similarity? Extract all attributes from original file. Order them in by some priority, score every element from second file and output the element with highest score?
+5. So I'm finishing. Scoring system might be improved, I even don't know how it is doing now. Output puts sibling count for body as 1 - needs to be fixed. Tests are mostly useless now, had no time to figure out. java 8 flavor could be added. Cleanup, moving everything out of main etc.
+
+* Misc
+
+build and test with command "mvn clean compile assembly:single ; ./draft-test.sh"
+run with something like "java -jar target/agile-engine-1.0-jar-with-dependencies.jar src/test/data/sample-1-evil-gemini.html src/test/data/sample-0-origin.html page-wrapper"
+
 * Must have
 - The application must be smart enough to find the target element, at least for the provided cases. However, a good algorithm should be agnostic and flexible to handle cases beyond the provided samples. At the same time we don’t expect absolute reliability of the search algorithm; it must build some similarity level and may fail in some specific cases.
 - Tool execution should look like:
@@ -17,15 +32,3 @@
 ** TODO Output comparison
   Comparison output for sample pages.
 ** TODO Fill Readme.
-
-
-* Trail of my thought
-
-1. What thing is similar in all cases? class="btn"? Should I collect all buttons in document first?
-2. So the way I understand the task is to grab all data about html element (button to be exact) with specific id. Then I extract all useful information from that element. After that I go through another html file and try to find element which is the *most similar* to original one? Ok, lets stop here and implement things.
-3. how to implement this? First - read two files. Second - find element in first on, parsing is required. Third - find all btn elements in second file. Fourth - select most similar element from second file and output path.
-4. How to check similarity? Extract all attributes from original file. Order them in by some priority, score every element from second file and output the element with highest score?
-
-* Misc
-
-build and test with command "mvn clean compile assembly:single ; ./draft-test.sh"
