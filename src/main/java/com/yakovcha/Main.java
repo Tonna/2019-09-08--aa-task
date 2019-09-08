@@ -81,7 +81,22 @@ public class Main {
             }
         }
 
-        System.out.println(diffBtns.get(max));
+        Element similar = diffBtns.get(max);
+
+        String out = "";
+        out += similar.tag().getName() + getNameAndPosition(similar);
+        Element parent = similar.parent();
+        do {
+            out = parent.tag().getName() + (getNameAndPosition(parent)) + "/" + out;
+            parent = parent.parent();
+        } while (parent.hasParent());
+
+
+        System.out.println(out);
+    }
+
+    private static String getNameAndPosition(Element similar) {
+        return similar.elementSiblingIndex() == 0 ? "" : "[" + similar.elementSiblingIndex() + "]";
     }
 
     private static String getButtonTextAndCleanUp(Element originalBtn) {
