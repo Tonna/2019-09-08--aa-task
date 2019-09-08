@@ -1,20 +1,17 @@
 package com.yakovcha;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Attribute;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Attribute;
-import org.jsoup.nodes.Attributes;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public class Main {
 
@@ -67,9 +64,9 @@ public class Main {
             }
             //TODO put some more sophisticated logic here
             for (Attribute diffAttr : diffBtns.get(i).attributes()) {
-                if (!originalBtn.attributes().get(diffAttr.getKey()).isEmpty()){
-                    if(Objects.equals(originalBtn.attributes().get(diffAttr.getKey()),
-                            diffAttr.getValue())){
+                if (!originalBtn.attributes().get(diffAttr.getKey()).isEmpty()) {
+                    if (Objects.equals(originalBtn.attributes().get(diffAttr.getKey()),
+                            diffAttr.getValue())) {
                         score.set(i, score.get(i) + 1);
                     }
                 }
@@ -77,15 +74,14 @@ public class Main {
 
 
         }
-        int max = -1;
+        int max = 0;
         for (int i = 0; i < score.size(); i++) {
-            if(score.get(i) > max) {
-                max = score.get(i);
+            if (score.get(i) > max) {
+                max = i;
             }
         }
 
-
-        System.out.println(diffBtns.get(max).cssSelector());
+        System.out.println(diffBtns.get(max));
     }
 
     private static String getButtonTextAndCleanUp(Element originalBtn) {
